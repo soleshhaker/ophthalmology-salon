@@ -21,5 +21,7 @@ namespace Models.DTO
         public string ApplicationUserId { get; set; }
         public VisitType VisitType { get; set; }
         public VisitStatus VisitStatus { get; set; }
+        public float Cost { get; set; }
+        public string AdditionalInfo { get; set; }
     }
 }

@@ -4,7 +4,7 @@
     <TargetFramework>net7.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <RootNamespace>ophthalmology_salon</RootNamespace>
+    <RootNamespace>Ophthalmology_Salon</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>

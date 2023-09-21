@@ -1,13 +1,14 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using DataAccess.Data;
-using ophthalmology_salon.Profiles;
+using Ophthalmology_Salon.Profiles;
 using DataAccess.Repository.IRepository;
 using DataAccess.Repository;
 using Utility;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using DataAccess.DBInitializer;
 using System.Text.Json.Serialization;
+
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<ApplicationDBContext>(options => options.UseSqlServer(
@@ -29,7 +30,6 @@ builder.Services.AddControllers().AddJsonOptions(x =>
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

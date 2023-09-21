@@ -12,7 +12,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;
 
-namespace ophthalmology_salon.Areas.Identity.Pages.Account
+namespace Ophthalmology_Salon.Areas.Identity.Pages.Account
 {
     public class LoginWith2faModel : PageModel
     {

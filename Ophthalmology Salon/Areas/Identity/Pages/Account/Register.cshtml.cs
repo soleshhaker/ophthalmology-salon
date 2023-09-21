@@ -19,7 +19,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
 
-namespace ophthalmology_salon.Areas.Identity.Pages.Account
+namespace Ophthalmology_Salon.Areas.Identity.Pages.Account
 {
     public class RegisterModel : PageModel
     {

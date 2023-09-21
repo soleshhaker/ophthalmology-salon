@@ -15,8 +15,6 @@ namespace Models.DTO
         [Required]
         public DateTime Start { get; set; }
         [Required]
-        public DateTime End { get; set; }
-        [Required]
         public VisitType VisitType { get; set; }
     }
 }

@@ -4,7 +4,7 @@
 
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace ophthalmology_salon.Areas.Identity.Pages.Account
+namespace Ophthalmology_Salon.Areas.Identity.Pages.Account
 {
     /// <summary>
     ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used

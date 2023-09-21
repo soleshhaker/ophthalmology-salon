@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 
-namespace ophthalmology_salon.Areas.Identity.Pages.Account
+namespace Ophthalmology_Salon.Areas.Identity.Pages.Account
 {
     public class LogoutModel : PageModel
     {
