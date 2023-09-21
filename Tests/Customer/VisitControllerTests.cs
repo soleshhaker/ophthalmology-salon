@@ -43,7 +43,7 @@ namespace Tests.Customer
         public void AllVisits_ReturnsOkResult_WhenVisitsExist()
         {
             var options = new DbContextOptionsBuilder<ApplicationDBContext>()
-           .UseInMemoryDatabase(databaseName: "TestDb")
+           .UseInMemoryDatabase(databaseName: RandomDBName.GetRandomName())
            .Options;
 
             using (var dbContext = new ApplicationDBContext(options))
@@ -83,6 +83,53 @@ namespace Tests.Customer
                 // Assert
                 var okResult = Assert.IsType<OkObjectResult>(result);
                 Assert.IsAssignableFrom<IEnumerable<VisitReadDTO>>(okResult.Value);
+            }
+        }
+        [Fact]
+        public void VisitById_ReturnsOkResult_WhenVisitsExist()
+        {
+            var options = new DbContextOptionsBuilder<ApplicationDBContext>()
+           .UseInMemoryDatabase(databaseName: RandomDBName.GetRandomName())
+           .Options;
+
+            using (var dbContext = new ApplicationDBContext(options))
+            {
+                dbContext.ApplicationUsers.Add(new ApplicationUser
+                {
+                    Id = "testUserId",
+                    Name = "someName",
+                    Role = SD.Role_Customer
+                });
+                dbContext.SaveChanges();
+
+                var mockUnitOfWork = new Mock<UnitOfWork>(dbContext);
+                var claims = new List<Claim>()
+                {
+                    new Claim(ClaimTypes.NameIdentifier, "testUserId"),
+                };
+                var identity = new ClaimsIdentity(claims, "TestAuthType");
+                var principal = new ClaimsPrincipal(identity);
+
+                var mockControllerContext = new Mock<ControllerContext>();
+                mockControllerContext.Object.HttpContext = new DefaultHttpContext { User = principal };
+
+
+                var controller = new VisitController(mockUnitOfWork.Object, _mapper)
+                {
+                    ControllerContext = mockControllerContext.Object
+                };
+
+                var availableTimes = controller.AvailableTime(Utility.Enums.VisitType.RoutineEyeExam);
+                var availableTimesResult = ((ObjectResult)availableTimes.Result).Value as List<DateTime>;
+                var randomTimeIndex = new Random().Next(0, availableTimesResult.Count);
+
+                var visitActionResult = controller.Visit(new VisitCreateDTO() { Start = availableTimesResult[randomTimeIndex], VisitType = Utility.Enums.VisitType.RoutineEyeExam });
+                var visitValue = ((ObjectResult)visitActionResult).Value as VisitReadDTO;
+
+                var result = controller.VisitById(visitValue.Id);
+
+                var okResult = Assert.IsType<OkObjectResult>(result);
+                Assert.IsAssignableFrom<VisitReadDTO>(okResult.Value);
             }
         }
     }
