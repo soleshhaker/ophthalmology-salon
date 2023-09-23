@@ -3,7 +3,7 @@ using Microsoft.CodeAnalysis;
 using Models.DTO;
 using Ophthalmology.Models;
 
-namespace Ophthalmology_Salon.Profiles
+namespace OphthalmologySalon.Profiles
 {
     public class VisitProfile : Profile
     {

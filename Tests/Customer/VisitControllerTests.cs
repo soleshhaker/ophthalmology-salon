@@ -8,8 +8,8 @@ using Microsoft.EntityFrameworkCore;
 using Models.DTO;
 using Moq;
 using Ophthalmology.Models;
-using Ophthalmology_Salon.Areas.Customer.Controller;
-using Ophthalmology_Salon.Profiles;
+using OphthalmologySalon.Areas.Customer.Controller;
+using OphthalmologySalon.Profiles;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,7 +19,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Utility;
 
-namespace Tests.Customer
+namespace IntegrationTests.Customer
 {
     public class VisitControllerTests
     {
@@ -37,7 +37,6 @@ namespace Tests.Customer
                 _mapper = mapper;
             }
         }
-
 
         [Fact]
         public void AllVisits_ReturnsOkResult_WhenVisitsExist()
@@ -85,6 +84,7 @@ namespace Tests.Customer
                 Assert.IsAssignableFrom<IEnumerable<VisitReadDTO>>(okResult.Value);
             }
         }
+
         [Fact]
         public void VisitById_ReturnsOkResult_WhenVisitsExist()
         {

@@ -7,8 +7,8 @@ using Microsoft.EntityFrameworkCore;
 using Models.DTO;
 using Moq;
 using Ophthalmology.Models;
-using Ophthalmology_Salon.Areas.Doctor;
-using Ophthalmology_Salon.Profiles;
+using OphthalmologySalon.Areas.Doctor;
+using OphthalmologySalon.Profiles;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,7 +17,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Utility;
 
-namespace Tests.Doctor
+namespace IntegrationTests.Doctor
 {
     public class VisitControllerTests
     {

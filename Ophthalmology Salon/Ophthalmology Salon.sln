@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33829.357
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ophthalmology Salon", "Ophthalmology Salon.csproj", "{5587856D-31DB-40D1-9CDC-BBC29DC7A15D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OphthalmologySalon", "OphthalmologySalon.csproj", "{5587856D-31DB-40D1-9CDC-BBC29DC7A15D}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccess", "..\DataAccess\DataAccess.csproj", "{9CDEB123-375A-4E27-B409-1B7A0E38AEDE}"
 EndProject
@@ -11,7 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Utility", "..\Utility\Utili
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Models", "..\Models\Models.csproj", "{110646EB-6879-421C-A0D1-CD380E041152}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "..\Tests\Tests.csproj", "{8A2C1969-4306-441B-A820-6587B5C08321}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IntegrationTests", "..\Tests\IntegrationTests.csproj", "{8A2C1969-4306-441B-A820-6587B5C08321}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "..\Unit Tests\UnitTests.csproj", "{A0A127EB-4E55-45CF-A6D4-3A6C62EB7A29}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{8A2C1969-4306-441B-A820-6587B5C08321}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8A2C1969-4306-441B-A820-6587B5C08321}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8A2C1969-4306-441B-A820-6587B5C08321}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A0A127EB-4E55-45CF-A6D4-3A6C62EB7A29}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A0A127EB-4E55-45CF-A6D4-3A6C62EB7A29}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A0A127EB-4E55-45CF-A6D4-3A6C62EB7A29}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A0A127EB-4E55-45CF-A6D4-3A6C62EB7A29}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

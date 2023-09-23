@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace Ophthalmology_Salon.Areas.Identity.Pages.Account.Manage
+namespace OphthalmologySalon.Areas.Identity.Pages.Account.Manage
 {
     public class IndexModel : PageModel
     {

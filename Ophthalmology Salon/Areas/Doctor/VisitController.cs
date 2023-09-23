@@ -7,7 +7,7 @@ using System.Security.Claims;
 using Utility;
 using static Utility.Enums;
 
-namespace Ophthalmology_Salon.Areas.Doctor
+namespace OphthalmologySalon.Areas.Doctor
 {
     [Area("Doctor")]
     [Route("api/v1/[area]/[controller]")]

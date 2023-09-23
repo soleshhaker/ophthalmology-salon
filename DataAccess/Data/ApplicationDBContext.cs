@@ -23,15 +23,6 @@ namespace DataAccess.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            //modelBuilder.Entity<Visit>().HasData(
-            //  new Visit
-            //  {
-            //      Id = 1,
-            //      VisitStatus = Utility.Enums.VisitStatus.Approved,
-            //      Start = new DateTime(2023, 9, 13, 9, 0, 0),
-            //      End = new DateTime(2023, 9, 13, 11, 0, 0),
-            //      VisitType = Utility.Enums.VisitType.RoutineEyeExam,
-            //  });
         }
     }
 }

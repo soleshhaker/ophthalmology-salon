@@ -9,7 +9,7 @@ using System.Security.Claims;
 using Utility;
 using static Utility.Enums;
 
-namespace Ophthalmology_Salon.Areas.Customer.Controller
+namespace OphthalmologySalon.Areas.Customer.Controller
 {
     [Area("Customer")]
     [Route("api/v1/[area]/[controller]")]
@@ -51,7 +51,7 @@ namespace Ophthalmology_Salon.Areas.Customer.Controller
                 return NotFound(ex.Message);
             }
         }
-        [HttpGet("VisitById/{id?}", Name ="VisitById")]
+        [HttpGet("VisitById/{id?}", Name = "VisitById")]
         public IActionResult VisitById(int id)
         {
             try
@@ -99,9 +99,9 @@ namespace Ophthalmology_Salon.Areas.Customer.Controller
                     if (slotStart >= minimumAdvanceBookingTime && slotStart.Add(visitDuration) <= endTime)
                     {
                         // Check if the slot overlaps with any existing visit
-                        if (!allVisits.Any(v => (slotStart >= v.Start && slotStart < v.End) 
-                        || (slotStart.Add(visitDuration) > v.Start && slotStart.Add(visitDuration) <= v.End) 
-                        || (slotStart <= v.Start && slotStart.Add(visitDuration) >= v.End)))
+                        if (!allVisits.Any(v => slotStart >= v.Start && slotStart < v.End
+                        || slotStart.Add(visitDuration) > v.Start && slotStart.Add(visitDuration) <= v.End
+                        || slotStart <= v.Start && slotStart.Add(visitDuration) >= v.End))
                         {
                             availableTimes.Add(slotStart);
                         }
@@ -123,7 +123,7 @@ namespace Ophthalmology_Salon.Areas.Customer.Controller
                     return TimeSpan.FromMinutes(15);
                 case VisitType.ComprehensiveEyeExam:
                     return TimeSpan.FromHours(1);
-                                                  // TODO add rest of the types
+                // TODO add rest of the types
                 default:
                     throw new ArgumentException("Invalid VisitType");
             }
@@ -161,7 +161,7 @@ namespace Ophthalmology_Salon.Areas.Customer.Controller
 
                 var visitReadDto = _mapper.Map<VisitReadDTO>(visit);
 
-                return CreatedAtRoute(nameof(VisitById), new { Id = visitReadDto.Id }, visitReadDto);
+                return CreatedAtRoute(nameof(VisitById), new { visitReadDto.Id }, visitReadDto);
             }
             catch (Exception ex)
             {

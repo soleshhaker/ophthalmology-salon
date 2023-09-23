@@ -37,17 +37,45 @@ namespace DataAccess.Data
                 }
 
                 const string adminUserName = "Admin";
-                var user = await userManager.FindByNameAsync(adminUserName);
-                if (user == null)
+                var admin = await userManager.FindByNameAsync(adminUserName);
+                if (admin == null)
                 {
-                    user = new ApplicationUser() { UserName = adminUserName, Email = "admin@admin.com" };
-                    await userManager.CreateAsync(user, "Admin123!");
+                    admin = new ApplicationUser() { UserName = adminUserName, Email = "admin@admin.com", Role = SD.Role_Admin };
+                    await userManager.CreateAsync(admin, "Admin123!");
                 }
 
-                var isInAdminRole = await userManager.IsInRoleAsync(user, SD.Role_Admin);
+                var isInAdminRole = await userManager.IsInRoleAsync(admin, SD.Role_Admin);
                 if (!isInAdminRole)
                 {
-                    await userManager.AddToRoleAsync(user, SD.Role_Admin);
+                    await userManager.AddToRoleAsync(admin, SD.Role_Admin);
+                }
+
+                const string doctorUserName = "Doctor";
+                var doctor = await userManager.FindByNameAsync(doctorUserName);
+                if (doctor == null)
+                {
+                    doctor = new ApplicationUser() { UserName = doctorUserName, Email = "doctor@doctor.com", Role = SD.Role_Doctor };
+                    await userManager.CreateAsync(doctor, "Doc123!");
+                }
+
+                var isInDoctorRole = await userManager.IsInRoleAsync(doctor, SD.Role_Doctor);
+                if (!isInDoctorRole)
+                {
+                    await userManager.AddToRoleAsync(doctor, SD.Role_Doctor);
+                }
+
+                const string customerUserName = "Customer";
+                var customer = await userManager.FindByNameAsync(customerUserName);
+                if (customer == null)
+                {
+                    customer = new ApplicationUser() { UserName = customerUserName, Email = "customer@customer.com", Role = SD.Role_Customer };
+                    await userManager.CreateAsync(customer, "Customer123!");
+                }
+
+                var isInCustomerRole = await userManager.IsInRoleAsync(customer, SD.Role_Customer);
+                if (!isInCustomerRole)
+                {
+                    await userManager.AddToRoleAsync(customer, SD.Role_Customer);
                 }
             }
             
