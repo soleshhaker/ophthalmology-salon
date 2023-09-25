@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Ophthalmology.Models;
 using System.Security.Claims;
 
-namespace OphthalmologySalon.Areas.Identity
+namespace OphthalmologySalon.Areas.Identity.Controller
 {
     public class LoginController
     {

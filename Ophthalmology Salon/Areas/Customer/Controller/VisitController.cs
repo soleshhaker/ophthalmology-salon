@@ -51,12 +51,18 @@ namespace OphthalmologySalon.Areas.Customer.Controller
                 return NotFound(ex.Message);
             }
         }
-        [HttpGet("VisitById/{id?}", Name = "VisitById")]
+
+        [HttpGet("CustomerVisitById/{id?}", Name = "CustomerVisitById")]
         public IActionResult VisitById(int id)
         {
+            string userId = null;
+
             try
             {
-                var visit = _unitOfWork.Visit.GetFirstOrDefault(x => x.Id.Equals(id), includeProperties: "ApplicationUser");
+                var claimsIdentity = (ClaimsIdentity)User.Identity;
+                userId = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier).Value;
+
+                var visit = _unitOfWork.Visit.GetFirstOrDefault(x => x.ApplicationUserId == userId && x.Id.Equals(id), includeProperties: "ApplicationUser");
                 return Ok(_mapper.Map<VisitReadDTO>(visit));
             }
             catch (Exception ex)
@@ -64,6 +70,7 @@ namespace OphthalmologySalon.Areas.Customer.Controller
                 return NotFound(ex.Message);
             }
         }
+
         [HttpGet("AvailableTime")]
         public ActionResult<List<DateTime>> AvailableTime(VisitType visitType)
         {
@@ -141,6 +148,7 @@ namespace OphthalmologySalon.Areas.Customer.Controller
                     throw new ArgumentException("Invalid VisitType");
             }
         }
+
         [HttpPost]
         public IActionResult Visit(VisitCreateDTO visitCreateDTO)
         {

@@ -7,7 +7,7 @@ using System.Security.Claims;
 using Utility;
 using static Utility.Enums;
 
-namespace OphthalmologySalon.Areas.Doctor
+namespace OphthalmologySalon.Areas.Doctor.Controller
 {
     [Area("Doctor")]
     [Route("api/v1/[area]/[controller]")]
@@ -44,6 +44,21 @@ namespace OphthalmologySalon.Areas.Doctor
                 return NotFound(ex.Message);
             }
         }
+
+        [HttpGet("DoctorVisitById/{id?}", Name = "DoctorVisitById")]
+        public IActionResult VisitById(int id)
+        {
+            try
+            {
+                var visit = _unitOfWork.Visit.GetFirstOrDefault(x => x.Id.Equals(id), includeProperties: "ApplicationUser");
+                return Ok(_mapper.Map<VisitReadDTO>(visit));
+            }
+            catch (Exception ex)
+            {
+                return NotFound(ex.Message);
+            }
+        }
+
         [HttpPost("VisitStatus")]
         public IActionResult VisitStatus(int id, VisitStatus visitStatus)
         {
@@ -90,6 +105,5 @@ namespace OphthalmologySalon.Areas.Doctor
                 return NotFound(ex.Message);
             }
         }
-
     }
 }
