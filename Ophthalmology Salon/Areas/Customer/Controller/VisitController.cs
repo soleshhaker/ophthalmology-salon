@@ -122,33 +122,6 @@ namespace OphthalmologySalon.Areas.Customer.Controller
             return Ok(availableTimes);
         }
 
-        private TimeSpan GetVisitDuration(VisitType visitType)
-        {
-            switch (visitType)
-            {
-                case VisitType.RoutineEyeExam:
-                    return TimeSpan.FromMinutes(15);
-                case VisitType.ComprehensiveEyeExam:
-                    return TimeSpan.FromHours(1);
-                // TODO add rest of the types
-                default:
-                    throw new ArgumentException("Invalid VisitType");
-            }
-        }
-        private float GetVisitCost(VisitType visitType)
-        {
-            switch (visitType)
-            {
-                case VisitType.RoutineEyeExam:
-                    return 100f;
-                case VisitType.ComprehensiveEyeExam:
-                    return 300f;
-                // TODO add rest of the types
-                default:
-                    throw new ArgumentException("Invalid VisitType");
-            }
-        }
-
         [HttpPost]
         public IActionResult Visit(VisitCreateDTO visitCreateDTO)
         {
@@ -176,5 +149,45 @@ namespace OphthalmologySalon.Areas.Customer.Controller
                 return NotFound(ex.Message);
             }
         }
+
+#region HelperFunctions
+        private TimeSpan GetVisitDuration(VisitType visitType)
+        {
+            switch (visitType)
+            {
+                case VisitType.RoutineEyeExam:
+                    return TimeSpan.FromMinutes(15);
+                case VisitType.ComprehensiveEyeExam:
+                    return TimeSpan.FromHours(1);
+                case VisitType.EmergencyEyeCare:
+                    return TimeSpan.FromHours(1);
+                case VisitType.CataractEvaluation:
+                    return TimeSpan.FromMinutes(30);
+                case VisitType.ContactLensFitting:
+                    return TimeSpan.FromMinutes(30);
+                default:
+                    throw new ArgumentException("Invalid VisitType");
+            }
+        }
+
+        private float GetVisitCost(VisitType visitType)
+        {
+            switch (visitType)
+            {
+                case VisitType.RoutineEyeExam:
+                    return 100f;
+                case VisitType.ComprehensiveEyeExam:
+                    return 300f;
+                case VisitType.EmergencyEyeCare:
+                    return 400f;
+                case VisitType.CataractEvaluation:
+                    return 150f;
+                case VisitType.ContactLensFitting:
+                    return 100f;
+                default:
+                    throw new ArgumentException("Invalid VisitType");
+            }
+        }
+#endregion
     }
 }
