@@ -15,8 +15,9 @@ namespace OphthalmologySalon.Areas.Identity.Controller
         {
             _signInManager = signInManager;
         }
-        /// <param name="email">Admin: admin@admin.com</param>
-        /// <param name="password">Admin: Asd123!</param>
+        /// <summary>Log in into an account</summary>
+        /// <param name="email">Admin: admin@admin.com Doctor: doctor@doctor.com Customer: customer@customer.com</param>
+        /// <param name="password">Admin: Asd123! Doctor: Doc123! Customer: Customer123!</param>
         /// <returns>Returns true if login is successful, false otherwise.</returns>
         [HttpPost("Login")]
         public bool Login(string email, string password)
@@ -24,6 +25,7 @@ namespace OphthalmologySalon.Areas.Identity.Controller
             var result = _signInManager.PasswordSignInAsync(email, password, false, false).GetAwaiter().GetResult();
             return result.Succeeded;
         }
+        /// <summary>Log out of an account</summary>
         [HttpPost("Logout")]
         public void Logout()
         {

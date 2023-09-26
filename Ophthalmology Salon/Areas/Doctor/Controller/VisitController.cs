@@ -24,6 +24,8 @@ namespace OphthalmologySalon.Areas.Doctor.Controller
             _mapper = mapper;
         }
 
+        /// <summary>Returns all visits</summary>
+        /// <returns>Returns all visits</returns>
         [HttpGet]
         public IActionResult AllVisits()
         {
@@ -45,6 +47,8 @@ namespace OphthalmologySalon.Areas.Doctor.Controller
             }
         }
 
+        /// <summary>Try to get a visit by id</summary>
+        /// <returns>Returns visit or exception if it's not found</returns>
         [HttpGet("DoctorVisitById/{id?}", Name = "DoctorVisitById")]
         public IActionResult VisitById(int id)
         {
@@ -59,6 +63,8 @@ namespace OphthalmologySalon.Areas.Doctor.Controller
             }
         }
 
+        /// <summary>Try to update status of a visit with given id</summary>
+        /// <returns>Returns ok or exception if it's not found</returns>
         [HttpPost("VisitStatus")]
         public IActionResult VisitStatus(int id, VisitStatus visitStatus)
         {
@@ -83,6 +89,8 @@ namespace OphthalmologySalon.Areas.Doctor.Controller
             }
         }
 
+        /// <summary>Try to add cost to a visit with given id</summary>
+        /// <returns>Returns ok or exception if it's not found</returns>
         [HttpPost("VisitCost")]
         public IActionResult VisitCost(int id, float cost, string? additionalInfo)
         {

@@ -26,6 +26,8 @@ namespace OphthalmologySalon.Areas.Customer.Controller
             _mapper = mapper;
         }
 
+        /// <summary>Returns all visits with current user assigned to them</summary>
+        /// <returns>Returns all visits with current user assigned to them</returns>
         [HttpGet("AllVisits")]
         public IActionResult AllVisits()
         {
@@ -52,6 +54,8 @@ namespace OphthalmologySalon.Areas.Customer.Controller
             }
         }
 
+        /// <summary>Returns visit with given id if current user is assigned to them</summary>
+        /// <returns>Returns visit with given id if current user is assigned to them</returns>
         [HttpGet("CustomerVisitById/{id?}", Name = "CustomerVisitById")]
         public IActionResult VisitById(int id)
         {
@@ -71,6 +75,8 @@ namespace OphthalmologySalon.Areas.Customer.Controller
             }
         }
 
+        /// <summary>Returns available times for given visit type</summary>
+        /// <returns>Returns available times for given visit type</returns>
         [HttpGet("AvailableTime")]
         public ActionResult<List<DateTime>> AvailableTime(VisitType visitType)
         {
@@ -122,6 +128,8 @@ namespace OphthalmologySalon.Areas.Customer.Controller
             return Ok(availableTimes);
         }
 
+        /// <summary>Post a visit</summary>
+        /// <returns>Returns created at route or not found exception if something goes wrong</returns>
         [HttpPost]
         public IActionResult Visit(VisitCreateDTO visitCreateDTO)
         {

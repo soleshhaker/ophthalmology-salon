@@ -25,6 +25,8 @@ namespace OphthalmologySalon.Areas.Admin.Controller
             _mapper = mapper;
         }
 
+        /// <summary>Returns all visits</summary>
+        /// <returns>Returns all visits</returns>
         [HttpGet]
         public IActionResult AllVisits()
         {
@@ -46,6 +48,8 @@ namespace OphthalmologySalon.Areas.Admin.Controller
             }
         }
 
+        /// <summary>Try to get a visit by id</summary>
+        /// <returns>Returns visit or exception if it's not found</returns>
         [HttpGet("AdminVisitById/{id?}", Name = "AdminVisitById")]
         public IActionResult VisitById(int id)
         {
@@ -59,7 +63,8 @@ namespace OphthalmologySalon.Areas.Admin.Controller
                 return NotFound(ex.Message);
             }
         }
-
+        /// <summary>Post a visit</summary>
+        /// <returns>Returns created at route or not found exception if something goes wrong</returns>
         [HttpPost]
         public IActionResult Visit(Visit visit)
         {
@@ -78,6 +83,8 @@ namespace OphthalmologySalon.Areas.Admin.Controller
             }
         }
 
+        /// <summary>Update a visit of given id</summary>
+        /// <returns>Returns created at route or not found exception if something goes wrong</returns>
         [HttpPost("UpdateVisit")]
         public IActionResult UpdateVisit(Visit visit, int id)
         {
@@ -112,6 +119,9 @@ namespace OphthalmologySalon.Areas.Admin.Controller
             }
         }
 
+
+        /// <summary>Deletes a visit of given id</summary>
+        /// <returns>Returns ok or not found exception if something goes wrong</returns>
         [HttpDelete]
         public IActionResult DeleteVisit(int visitId)
         {
