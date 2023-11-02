@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { LoginService } from '../login.service';
+import { LoginService } from 'src/app/core/services/login.service';
 
 @Component({
   selector: 'app-log-in',
@@ -12,27 +12,29 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   constructor(private fb: FormBuilder, private loginService: LoginService) {
     this.loginForm = this.fb.group({
-      email: ['', [Validators.required, Validators.email]],
+      username: ['', [Validators.required]],
       password: ['', [Validators.required]]
     });
   }
 
   ngOnInit() {
     this.loginForm = this.fb.group({
-      email: ['', [Validators.required, Validators.email]],
+      username: ['', [Validators.required]],
       password: ['', [Validators.required]]
     });
   }
 
   onLogin() {
     if (this.loginForm.valid) {
-      const { email, password } = this.loginForm.value;
-      this.loginService.login(email, password).subscribe(
+      const { username, password } = this.loginForm.value;
+      this.loginService.login(username, password).subscribe(
         (result) => {
           if (result) {
+            console.log("login succesfull");
             // Login successful
             // Redirect or perform other actions here
           } else {
+            console.log("login failed");
             // Login failed
             // Handle error or show error message
           }

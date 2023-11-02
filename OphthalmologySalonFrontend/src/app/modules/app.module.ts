@@ -8,6 +8,7 @@ import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { FetchVisitsComponent } from './fetch-visits/fetch-visits.component';
 import { LoginComponent } from './log-in/log-in.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { RegisterUserComponent } from './register-user/register-user.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     HomeComponent,
     NavMenuComponent,
     FetchVisitsComponent,
-    LoginComponent
+    LoginComponent,
+    RegisterUserComponent
   ],
   imports: [
     BrowserModule, HttpClientModule,
@@ -23,7 +25,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'fetch-visits', component: FetchVisitsComponent },
-      { path: 'log-in', component: LoginComponent }
+      { path: 'log-in', component: LoginComponent },
+      { path: 'register', component: RegisterUserComponent }
     ])
   ],
   providers: [],

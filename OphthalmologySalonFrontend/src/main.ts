@@ -1,6 +1,6 @@
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 
-import { AppModule } from './app/app.module';
+import { AppModule } from 'src/app/modules/app.module';
 
 export function getBaseUrl() {
   return document.getElementsByTagName('base')[0].href;

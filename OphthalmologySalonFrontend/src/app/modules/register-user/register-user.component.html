@@ -1,0 +1,71 @@
+<h3>Register</h3>
+
+<form [formGroup]="registerForm" (ngSubmit)="registerUser(registerForm.value)">
+    <div>
+        <label for="username">
+            Username
+        </label>
+        <input id="username" type="text" formControlName="username">
+    </div>
+    <div>
+        <label for="name">
+            Name
+        </label>
+        <input id="name" type="text" formControlName="name">
+    </div>
+    <div>
+        <label for="email">
+            Email
+        </label>
+        <input id="email" type="text" formControlName="email">
+    </div>
+    <div>
+        <label for="phone">
+            Phone
+        </label>
+        <input id="phone" type="text" formControlName="phone">
+    </div>
+    <div>
+        <label for="state">
+            State
+        </label>
+        <input id="state" type="text" formControlName="state">
+    </div>
+    <div>
+        <label for="city">
+            City
+        </label>
+        <input id="city" type="text" formControlName="city">
+    </div>
+    <div>
+        <label for="streetAddress">
+            StreetAddress
+        </label>
+        <input id="streetAddress" type="text" formControlName="streetAddress">
+    </div>
+    <div>
+        <label for="postalCode">
+            PostalCode
+        </label>
+        <input id="postalCode" type="text" formControlName="postalCode">
+    </div>
+    <div>
+        <label for="role">
+            Role
+        </label>
+        <input id="role" type="text" formControlName="role">
+    </div>
+    <div>
+        <label for="password">
+            Password
+        </label>
+        <input id="password" type="password" formControlName="password">
+    </div>
+    <div>
+        <label for="confirmPassword">
+            ConfirmPassword
+        </label>
+        <input id="confirmPassword" type="password" formControlName="confirmPassword">
+    </div>
+    <button class="button" type="submit">Log In</button>
+</form>
