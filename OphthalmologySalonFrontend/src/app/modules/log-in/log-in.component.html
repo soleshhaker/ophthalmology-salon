@@ -1,19 +1,16 @@
-<h3>Log In</h3>
-
-<form [formGroup]="loginForm" (ngSubmit)="onLogin()">
-    <div>
-        <label for="username">
-            Username
-        </label>
-        <input id="username" type="text" formControlName="username">
+<app-authentication-container>
+    <h3>Log In</h3>
+    <div class="card">
+        <div class="card-body">
+            <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+                <div class="mb-3">
+                    <input id="username" type="text" formControlName="username" [placeholder]="isFieldEmpty('username') ? 'Username' : ''">
+                </div>
+                <div class="mb-3">
+                    <input id="password" type="password" formControlName="password" [placeholder]="isFieldEmpty('password') ? 'Password' : ''">
+                </div>
+                <button class="button" type="submit">Log In</button>
+            </form>
+        </div>
     </div>
-
-    <div>
-        <label for="password">
-            Password
-        </label>
-        <input id="password" type="password" formControlName="password">
-    </div>
-
-    <button class="button" type="submit">Log In</button>
-</form>
+</app-authentication-container>

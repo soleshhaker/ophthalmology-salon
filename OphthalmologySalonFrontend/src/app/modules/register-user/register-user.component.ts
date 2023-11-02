@@ -12,6 +12,20 @@ import { RegisterUserDTO } from 'src/app/core/models/registerUserDTO';
 export class RegisterUserComponent implements OnInit {
 
   registerForm: FormGroup;
+
+  formFieldNames: string[] = [
+    'username',
+    'name',
+    'email',
+    'phone',
+    'state',
+    'city',
+    'streetAddress',
+    'postalCode',
+    'role',
+    'password',
+    'confirmPassword'
+  ];
   constructor(private fb: FormBuilder, private authService: AuthenticationService) {
     this.registerForm = this.fb.group({
       username: ['', [Validators.required]],
@@ -59,6 +73,19 @@ export class RegisterUserComponent implements OnInit {
         next: (_) => console.log("Successful registration"),
         error: (err: HttpErrorResponse) => console.log(err.error.errors)
       })
+  }
 
+  isFieldRequired(fieldName: string): boolean {
+    const field = this.registerForm.get(fieldName);
+    return field !== null && field.hasValidator(Validators.required);
+  }
+
+  isFieldEmpty(fieldName: string): boolean {
+    const field = this.registerForm.get(fieldName);
+    return field !== null && !field.value;
+  }
+
+  toProperCase(fieldName: string): string {
+    return fieldName.charAt(0).toUpperCase() + fieldName.slice(1);
   }
 }

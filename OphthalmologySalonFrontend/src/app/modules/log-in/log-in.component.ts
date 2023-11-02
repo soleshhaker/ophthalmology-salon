@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { LoginService } from 'src/app/core/services/login.service';
+import { AuthenticationService } from 'src/app/core/services/authentication.service';
 
 @Component({
   selector: 'app-log-in',
@@ -10,7 +10,7 @@ import { LoginService } from 'src/app/core/services/login.service';
 export class LoginComponent implements OnInit {
 
   loginForm: FormGroup;
-  constructor(private fb: FormBuilder, private loginService: LoginService) {
+  constructor(private fb: FormBuilder, private authService: AuthenticationService) {
     this.loginForm = this.fb.group({
       username: ['', [Validators.required]],
       password: ['', [Validators.required]]
@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
   onLogin() {
     if (this.loginForm.valid) {
       const { username, password } = this.loginForm.value;
-      this.loginService.login(username, password).subscribe(
+      this.authService.login("Login", username, password).subscribe(
         (result) => {
           if (result) {
             console.log("login succesfull");
@@ -44,5 +44,14 @@ export class LoginComponent implements OnInit {
         }
       );
     }
+  }
+
+  isFieldEmpty(fieldName: string): boolean {
+    const field = this.loginForm.get(fieldName);
+    return field !== null && !field.value;
+  }
+
+  toProperCase(fieldName: string): string {
+    return fieldName.charAt(0).toUpperCase() + fieldName.slice(1);
   }
 }

@@ -9,6 +9,7 @@ import { FetchVisitsComponent } from './fetch-visits/fetch-visits.component';
 import { LoginComponent } from './log-in/log-in.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RegisterUserComponent } from './register-user/register-user.component';
+import { AuthenticationContainerComponent } from './authentication-container/authentication-container.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { RegisterUserComponent } from './register-user/register-user.component';
     NavMenuComponent,
     FetchVisitsComponent,
     LoginComponent,
-    RegisterUserComponent
+    RegisterUserComponent,
+    AuthenticationContainerComponent
   ],
   imports: [
     BrowserModule, HttpClientModule,
@@ -26,7 +28,9 @@ import { RegisterUserComponent } from './register-user/register-user.component';
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'fetch-visits', component: FetchVisitsComponent },
       { path: 'log-in', component: LoginComponent },
-      { path: 'register', component: RegisterUserComponent }
+      { path: 'register', component: RegisterUserComponent },
+      { path: 'auth', component: AuthenticationContainerComponent },
+
     ])
   ],
   providers: [],

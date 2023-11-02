@@ -1,0 +1,9 @@
+.mb-3 label {
+  margin-right: 10px;
+}
+.required-field {
+  border: 1px ridge red;
+}
+.card {
+  background-color: #cedcf2;
+}
