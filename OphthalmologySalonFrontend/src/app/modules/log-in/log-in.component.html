@@ -1,0 +1,21 @@
+<app-authentication-container>
+    <h3>Log In</h3>
+    <div class="card">
+        <div class="card-body">
+            <form [formGroup]="loginForm" (ngSubmit)="onLogin(loginForm.value)">
+
+                <div *ngIf="showError" class="alert alert-danger" role="alert">
+                    {{errorMessage}}
+                </div>
+
+                <div class="mb-3">
+                    <input id="username" type="text" formControlName="username" [placeholder]="isFieldEmpty('username') ? 'Username' : ''">
+                </div>
+                <div class="mb-3">
+                    <input id="password" type="password" formControlName="password" [placeholder]="isFieldEmpty('password') ? 'Password' : ''">
+                </div>
+                <button class="button" type="submit">Log In</button>
+            </form>
+        </div>
+    </div>
+</app-authentication-container>

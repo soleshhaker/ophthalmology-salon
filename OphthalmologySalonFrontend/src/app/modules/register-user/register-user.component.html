@@ -1,0 +1,18 @@
+<app-authentication-container>
+    <h3>Register</h3>
+    <div class="card">
+        <div class="card-body">
+            <form [formGroup]="registerForm" (ngSubmit)="registerUser(registerForm.value)">
+                <ng-container *ngFor="let fieldName of formFieldNames">
+                    <div class="mb-3" [ngClass]="{'required-field': isFieldRequired(fieldName)}">
+                        <input [id]="fieldName"
+                               [type]="fieldName === 'password' || fieldName === 'confirmPassword' ? 'password' : 'text'"
+                               [formControlName]="fieldName"
+                               [placeholder]="isFieldEmpty(fieldName) ? toProperCase(fieldName) : ''">
+                    </div>
+                </ng-container>
+                <button class="button" type="submit">Register</button>
+            </form>
+        </div>
+    </div>
+</app-authentication-container>

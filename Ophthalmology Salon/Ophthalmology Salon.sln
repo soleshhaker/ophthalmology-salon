@@ -13,7 +13,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Models", "..\Models\Models.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IntegrationTests", "..\Tests\IntegrationTests.csproj", "{8A2C1969-4306-441B-A820-6587B5C08321}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "..\Unit Tests\UnitTests.csproj", "{A0A127EB-4E55-45CF-A6D4-3A6C62EB7A29}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitTests", "..\Unit Tests\UnitTests.csproj", "{A0A127EB-4E55-45CF-A6D4-3A6C62EB7A29}"
+EndProject
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "OphthalmologySalonFrontend", "..\OphthalmologySalonFrontend\OphthalmologySalonFrontend.esproj", "{D06138E5-E6EA-4196-929F-6BCEADAF7BFD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,12 @@ Global
 		{A0A127EB-4E55-45CF-A6D4-3A6C62EB7A29}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A0A127EB-4E55-45CF-A6D4-3A6C62EB7A29}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A0A127EB-4E55-45CF-A6D4-3A6C62EB7A29}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D06138E5-E6EA-4196-929F-6BCEADAF7BFD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D06138E5-E6EA-4196-929F-6BCEADAF7BFD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D06138E5-E6EA-4196-929F-6BCEADAF7BFD}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{D06138E5-E6EA-4196-929F-6BCEADAF7BFD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D06138E5-E6EA-4196-929F-6BCEADAF7BFD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D06138E5-E6EA-4196-929F-6BCEADAF7BFD}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

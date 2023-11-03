@@ -46,7 +46,7 @@ namespace DataAccess.DBInitializer
                 //if no roles create admin as well
                 _userManager.CreateAsync(new ApplicationUser
                 {
-                    UserName = "admin@admin.com",
+                    UserName = "admin",
                     Email = "admin@admin.com",
                     Name = "Admin",
                     PhoneNumber = "1234567890",
