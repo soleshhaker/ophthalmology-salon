@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Models.DTO;
 using NuGet.Protocol;
 using Ophthalmology.Models;
+using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 
 namespace OphthalmologySalon.Areas.Identity.Controller
@@ -15,21 +16,29 @@ namespace OphthalmologySalon.Areas.Identity.Controller
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly UserManager<IdentityUser> _userManager;
         private readonly IMapper _mapper;
-        public LoginController(SignInManager<IdentityUser> signInManager, IMapper mapper, UserManager<IdentityUser> userManager)
+        private readonly JwtHandler _jwtHandler;
+        public LoginController(SignInManager<IdentityUser> signInManager, IMapper mapper, UserManager<IdentityUser> userManager, JwtHandler jwtHandler)
         {
             _signInManager = signInManager;
             _mapper = mapper;
             _userManager = userManager;
+            _jwtHandler = jwtHandler;
         }
         /// <summary>Log in into an account</summary>
         /// <param name="username">Admin: admin Doctor: doctor Customer: customer</param>
         /// <param name="password">Admin: Asd123! Doctor: Doc123! Customer: Customer123!</param>
         /// <returns>Returns true if login is successful, false otherwise.</returns>
         [HttpPost("Login")]
-        public IActionResult Login([FromBody] LoginModel model)
+        public async Task<IActionResult> Login([FromBody] LoginModel model)
         {
-            var result = _signInManager.PasswordSignInAsync(model.Username, model.Password, false, false).GetAwaiter().GetResult();
-            return Ok(result.Succeeded);
+            var user = await _userManager.FindByNameAsync(model.Username);
+            if (user == null || !await _userManager.CheckPasswordAsync(user, model.Password))
+                return Unauthorized(new AuthResponseDto { ErrorMessage = "Invalid Authentication" });
+            var signingCredentials = _jwtHandler.GetSigningCredentials();
+            var claims = _jwtHandler.GetClaims(user);
+            var tokenOptions = _jwtHandler.GenerateTokenOptions(signingCredentials, claims);
+            var token = new JwtSecurityTokenHandler().WriteToken(tokenOptions);
+            return Ok(new AuthResponseDto { IsAuthSuccessful = true, Token = token });
         }
 
         /// <summary>Log out of an account</summary>

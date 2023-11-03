@@ -1,4 +1,4 @@
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
@@ -10,6 +10,7 @@ import { LoginComponent } from './log-in/log-in.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RegisterUserComponent } from './register-user/register-user.component';
 import { AuthenticationContainerComponent } from './authentication-container/authentication-container.component';
+import { ErrorHandlerService } from 'src/app/core/services/error-handler.service';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,11 @@ import { AuthenticationContainerComponent } from './authentication-container/aut
 
     ])
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: ErrorHandlerService,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

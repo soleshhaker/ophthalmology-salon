@@ -3,6 +3,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthenticationService } from 'src/app/core/services/authentication.service';
 import { RegisterUserDTO } from 'src/app/core/models/registerUserDTO';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register-user',
@@ -26,7 +27,7 @@ export class RegisterUserComponent implements OnInit {
     'password',
     'confirmPassword'
   ];
-  constructor(private fb: FormBuilder, private authService: AuthenticationService) {
+  constructor(private fb: FormBuilder, private authService: AuthenticationService, private router: Router) {
     this.registerForm = this.fb.group({
       username: ['', [Validators.required]],
       password: ['', [Validators.required]]
@@ -70,7 +71,10 @@ export class RegisterUserComponent implements OnInit {
 
     this.authService.registerUser("Registration", user)
       .subscribe({
-        next: (_) => console.log("Successful registration"),
+        next: (_) => {
+          console.log("Successful registration");
+          this.router.navigate(["Login"]);
+        },
         error: (err: HttpErrorResponse) => console.log(err.error.errors)
       })
   }
