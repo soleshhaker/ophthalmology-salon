@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 import { LoginUserDTO } from '../models/loginUserDTO';
 import { AuthResponseDto } from '../models/authResponseDTO';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ import { AuthResponseDto } from '../models/authResponseDTO';
 export class AuthenticationService {
   private authChangeSub = new Subject<boolean>()
   public authChanged = this.authChangeSub.asObservable();
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private jwtHelper: JwtHelperService) { }
 
   public registerUser = (route: string, body: RegisterUserDTO) => {
     return this.http.post<boolean>(this.createCompleteRoute(route, 'https://localhost:7105'), body);
@@ -24,6 +25,12 @@ export class AuthenticationService {
   public logout = () => {
     localStorage.removeItem("token");
     this.sendAuthStateChangeNotification(false);
+  }
+
+  public isUserAuthenticated = (): boolean => {
+    const token = localStorage.getItem("token");
+
+    return !!token && !this.jwtHelper.isTokenExpired(token);
   }
 
   public sendAuthStateChangeNotification = (isAuthenticated: boolean) => {

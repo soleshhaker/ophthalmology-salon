@@ -32,7 +32,7 @@ export class ErrorHandlerService {
       return this.handleUnauthorized(error);
     }
     else {
-      return "Undocumented error";
+      return "Undocumented error: " + error.message;
     }
   }
   private handleUnauthorized = (error: HttpErrorResponse) => {
