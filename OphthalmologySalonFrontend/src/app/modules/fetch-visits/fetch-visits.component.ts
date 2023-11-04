@@ -7,11 +7,24 @@ import { HttpClient } from '@angular/common/http';
 })
 export class FetchVisitsComponent {
   public visits: Visit[] = [];
-
+  public errorMessage: string = '';
+  public showError: boolean = false;
   constructor(http: HttpClient, @Inject('BACKEND_URL') baseUrl: string) {
-    http.get<Visit[]>(baseUrl + 'api/v1/Customer/Visit/AllVisits').subscribe(result => {
-      this.visits = result;
-    }, error => console.error(error));
+    http.get<Visit[]>(baseUrl + 'api/v1/Admin/Visit').subscribe(
+      result => {
+        if (result && result.length > 0) {
+          this.visits = result;
+          this.showError = false;
+        } else {
+          this.errorMessage = "Cannot find any visits"; // Set the error message
+          this.showError = true;
+        }
+      },
+      error => {
+        this.errorMessage = error.message; // Set an error message for other errors
+        this.showError = true;
+      }
+    );
   }
 }
 

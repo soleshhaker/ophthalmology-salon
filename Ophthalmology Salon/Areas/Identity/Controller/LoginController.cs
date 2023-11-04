@@ -8,6 +8,7 @@ using NuGet.Protocol;
 using Ophthalmology.Models;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
+using Utility;
 
 namespace OphthalmologySalon.Areas.Identity.Controller
 {
@@ -35,7 +36,7 @@ namespace OphthalmologySalon.Areas.Identity.Controller
             if (user == null || !await _userManager.CheckPasswordAsync(user, model.Password))
                 return Unauthorized(new AuthResponseDto { ErrorMessage = "Invalid Authentication" });
             var signingCredentials = _jwtHandler.GetSigningCredentials();
-            var claims = _jwtHandler.GetClaims(user);
+            var claims = await _jwtHandler.GetClaims(user);
             var tokenOptions = _jwtHandler.GenerateTokenOptions(signingCredentials, claims);
             var token = new JwtSecurityTokenHandler().WriteToken(tokenOptions);
             return Ok(new AuthResponseDto { IsAuthSuccessful = true, Token = token });
@@ -62,6 +63,8 @@ namespace OphthalmologySalon.Areas.Identity.Controller
 
                 return BadRequest(errors);
             }
+
+            await _userManager.AddToRoleAsync(user, SD.Role_Customer);
 
             return StatusCode(201);
         }
