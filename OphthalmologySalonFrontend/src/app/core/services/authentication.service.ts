@@ -33,6 +33,26 @@ export class AuthenticationService {
     return !!token && !this.jwtHelper.isTokenExpired(token);
   }
 
+  public isUserAdmin = (): boolean => {
+    const token = localStorage.getItem("token");
+
+    // Check if token is null or undefined
+    if (!token) {
+      return false;
+    }
+
+    const decodedToken = this.jwtHelper.decodeToken(token);
+
+    // Check if decodedToken is null or undefined, and if the role property exists
+    if (!decodedToken || !decodedToken['http://schemas.microsoft.com/ws/2008/06/identity/claims/role']) {
+      return false;
+    }
+
+    const role = decodedToken['http://schemas.microsoft.com/ws/2008/06/identity/claims/role'];
+    console.log(role);
+    return role === 'Admin';
+  }
+
   public sendAuthStateChangeNotification = (isAuthenticated: boolean) => {
     this.authChangeSub.next(isAuthenticated);
   }

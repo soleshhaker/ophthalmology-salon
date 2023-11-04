@@ -31,6 +31,9 @@ export class ErrorHandlerService {
     else if (error.status === 401) {
       return this.handleUnauthorized(error);
     }
+    else if (error.status === 403) {
+      return this.handleForbidden(error);
+    }
     else {
       return "Undocumented error: " + error.message;
     }
@@ -47,14 +50,13 @@ export class ErrorHandlerService {
 
   private handleNotFound = (error: HttpErrorResponse): string => {
     this.router.navigate(['/404']);
-    return error.message;
+    return error.error ? error.error : error.message;
   }
 
   private handleBadRequest = (error: HttpErrorResponse): string => {
     if (this.router.url === '/register') {
       let message = '';
       const values = Object.values(error.error.errors) as string[];
-
       values.map((m: string) => {
         message += m + '<br>';
       })
@@ -64,5 +66,10 @@ export class ErrorHandlerService {
     else {
       return error.error ? error.error : error.message;
     }
+  }
+
+  private handleForbidden = (error: HttpErrorResponse) => {
+    this.router.navigate(["/forbidden"], { queryParams: { returnUrl: this.router.url } });
+    return "Forbidden";
   }
 }

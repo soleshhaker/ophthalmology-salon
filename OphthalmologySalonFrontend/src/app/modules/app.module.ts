@@ -13,6 +13,8 @@ import { AuthenticationContainerComponent } from './authentication-container/aut
 import { ErrorHandlerService } from 'src/app/core/services/error-handler.service';
 import { JwtModule } from "@auth0/angular-jwt";
 import { AuthGuard } from '../core/guards/auth.guard';
+import { ForbiddenComponent } from './forbidden/forbidden.component';
+import { AdminGuard } from '../core/guards/admin.guard';
 
 export function tokenGetter() {
   console.log("getting token");
@@ -27,17 +29,19 @@ export function tokenGetter() {
     FetchVisitsComponent,
     LoginComponent,
     RegisterUserComponent,
-    AuthenticationContainerComponent
+    AuthenticationContainerComponent,
+    ForbiddenComponent
   ],
   imports: [
     BrowserModule, HttpClientModule,
     ReactiveFormsModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
-      { path: 'fetch-visits', component: FetchVisitsComponent, canActivate: [AuthGuard] },
+      { path: 'fetch-visits', component: FetchVisitsComponent, canActivate: [AuthGuard, AdminGuard] },
       { path: 'log-in', component: LoginComponent },
       { path: 'register', component: RegisterUserComponent },
       { path: 'auth', component: AuthenticationContainerComponent },
+      { path: "forbidden", component: ForbiddenComponent }
 
     ]),
     JwtModule.forRoot({
