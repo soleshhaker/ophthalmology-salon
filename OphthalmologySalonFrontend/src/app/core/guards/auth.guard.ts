@@ -13,7 +13,7 @@ export const AuthGuard: CanActivateFn = (
     return true;
   }
 
-  router.navigate(['/log-in'], { queryParams: { returnUrl: state.url } });
+  router.navigate(['/authentication/log-in'], { queryParams: { returnUrl: state.url } });
 
   return false;
 };

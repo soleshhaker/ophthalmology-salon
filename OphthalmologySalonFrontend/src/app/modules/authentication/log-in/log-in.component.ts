@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthenticationService } from 'src/app/core/services/authentication.service';
-import { LoginUserDTO } from '../../core/models/loginUserDTO';
-import { AuthResponseDto } from '../../core/models/authResponseDTO';
+import { LoginUserDTO } from '../../../core/models/loginUserDTO';
+import { AuthResponseDto } from '../../../core/models/authResponseDTO';
 import { Router, ActivatedRoute } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
 

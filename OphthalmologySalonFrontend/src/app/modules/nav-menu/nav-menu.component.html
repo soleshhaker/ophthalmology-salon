@@ -20,10 +20,10 @@
                         <a class="nav-link text-dark" [routerLink]="['/']">Home</a>
                     </li>
                     <li *ngIf='!isUserAuthenticated' class="nav-item" [routerLinkActive]="['link-active']">
-                        <a class="nav-link text-dark" [routerLink]="['/log-in']">Log in</a>
+                        <a class="nav-link text-dark" [routerLink]="['/authentication/log-in']">Log in</a>
                     </li>
                     <li *ngIf='!isUserAuthenticated' class="nav-item" [routerLinkActive]="['link-active']">
-                        <a class="nav-link text-dark" [routerLink]="['/register']">Register</a>
+                        <a class="nav-link text-dark" [routerLink]="['/authentication/register']">Register</a>
                     </li>
                     <li *ngIf='isUserAuthenticated' class="nav-item" [routerLinkActive]="['link-active']">
                         <a class="nav-link text-dark" [routerLink]="['/fetch-visits']">Fetch visits</a>

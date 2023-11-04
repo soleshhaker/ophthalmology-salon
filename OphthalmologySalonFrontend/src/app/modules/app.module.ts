@@ -6,10 +6,7 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { FetchVisitsComponent } from './fetch-visits/fetch-visits.component';
-import { LoginComponent } from './log-in/log-in.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { RegisterUserComponent } from './register-user/register-user.component';
-import { AuthenticationContainerComponent } from './authentication-container/authentication-container.component';
 import { ErrorHandlerService } from 'src/app/core/services/error-handler.service';
 import { JwtModule } from "@auth0/angular-jwt";
 import { AuthGuard } from '../core/guards/auth.guard';
@@ -27,9 +24,6 @@ export function tokenGetter() {
     HomeComponent,
     NavMenuComponent,
     FetchVisitsComponent,
-    LoginComponent,
-    RegisterUserComponent,
-    AuthenticationContainerComponent,
     ForbiddenComponent
   ],
   imports: [
@@ -38,9 +32,7 @@ export function tokenGetter() {
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'fetch-visits', component: FetchVisitsComponent, canActivate: [AuthGuard, AdminGuard] },
-      { path: 'log-in', component: LoginComponent },
-      { path: 'register', component: RegisterUserComponent },
-      { path: 'auth', component: AuthenticationContainerComponent },
+      { path: 'authentication', loadChildren: () => import('./authentication/authentication.module').then(m => m.AuthenticationModule) },
       { path: "forbidden", component: ForbiddenComponent }
 
     ]),
