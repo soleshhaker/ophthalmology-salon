@@ -1,0 +1,43 @@
+<head>
+</head>
+<body>
+    <div>
+        <div class="top-bar">
+            <div class="enum-buttons">
+                <button class="enum-button" (click)="handleButtonClick('RoutineEyeExam')">RoutineEyeExam</button>
+                <button class="enum-button" (click)="handleButtonClick('ComprehensiveEyeExam')">ComprehensiveEyeExam</button>
+                <button class="enum-button" (click)="handleButtonClick('CataractEvaluation')">CataractEvaluation</button>
+                <button class="enum-button" (click)="handleButtonClick('ContactLensFitting')">ContactLensFitting</button>
+                <button class="enum-button" (click)="handleButtonClick('EmergencyEyeCare')">EmergencyEyeCare</button>
+            </div>
+            <div class="navigation-buttons">
+                <button (click)="navigateToMonth(-1)"
+                        [ngClass]="{ 'enabled-button': currentMonthIndex > 0, 'disabled-button': currentMonthIndex <= 0 }">
+                    Previous Month
+                </button>
+                <button (click)="navigateToMonth(1)"
+                        [ngClass]="{ 'enabled-button': currentMonthIndex < availableTimes.length - 1, 'disabled-button': currentMonthIndex >= availableTimes.length - 1 }">
+                    Next Month
+                </button>
+            </div>
+        </div>
+        <div *ngIf="availableTimes.length > 0">
+            <h2 *ngIf="!visibleMonth">{{ availableTimes[currentMonthIndex].month | date: 'MMMM yyyy' }}</h2>
+            <ul *ngIf="!visibleMonth">
+                <li *ngFor="let time of availableTimes[currentMonthIndex].times">
+                    {{ time }}
+                </li>
+            </ul>
+            <div *ngIf="visibleMonth">
+                <h2>{{ visibleMonth.month | date: 'MMMM yyyy' }}</h2>
+                <ul>
+                    <li *ngFor="let time of visibleMonth.times">
+                        {{ time }}
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+</body>
