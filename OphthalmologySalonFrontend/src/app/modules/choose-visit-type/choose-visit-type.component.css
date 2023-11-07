@@ -13,6 +13,7 @@ body {
   align-items: center;
   height: 10vh;
   background-color: #f0f8ff;
+  margin-bottom:5%;
 }
 
 .enum-buttons {
@@ -34,4 +35,20 @@ body {
 .disabled-button {
   background-color: #ccc;
   cursor: not-allowed;
+}
+
+.calendar{
+  margin-bottom: 5%;
+}
+.calendar-header {
+  text-align: center;
+}
+
+.event-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 10px;
+}
+.cal-day-badge {
+  background-color: #97ea3a;
 }
