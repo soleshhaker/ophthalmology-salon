@@ -1,0 +1,57 @@
+<head>
+</head>
+<body>
+    <div>
+        <div class="top-bar">
+            <div class="enum-buttons">
+                <button class="enum-button" (click)="handleButtonClick('RoutineEyeExam')">RoutineEyeExam</button>
+                <button class="enum-button" (click)="handleButtonClick('ComprehensiveEyeExam')">ComprehensiveEyeExam</button>
+                <button class="enum-button" (click)="handleButtonClick('CataractEvaluation')">CataractEvaluation</button>
+                <button class="enum-button" (click)="handleButtonClick('ContactLensFitting')">ContactLensFitting</button>
+                <button class="enum-button" (click)="handleButtonClick('EmergencyEyeCare')">EmergencyEyeCare</button>
+            </div>
+            <div class="navigation-buttons">
+                <button (click)="navigateToMonth(-1)"
+                        [ngClass]="{ 'enabled-button': currentMonthIndex > 0, 'disabled-button': currentMonthIndex <= 0 }">
+                    Previous Month
+                </button>
+                <button (click)="navigateToMonth(1)"
+                        [ngClass]="{ 'enabled-button': currentMonthIndex < 3, 'disabled-button': currentMonthIndex >= 3 }">
+                    Next Month
+                </button>
+            </div>
+        </div>
+        <div class="calendar-header">
+            <h2>{{ viewDate | calendarDate:'monthViewTitle' }}</h2>
+        </div>
+        <div class="calendar">
+            <mwl-calendar-month-view [viewDate]="viewDate"
+                                     [events]="availableEvents"
+                                     [cellTemplate]="customCellTemplate"
+                                     [activeDayIsOpen]="activeDayIsOpen"
+                                     [openDayEventsTemplate]="customOpenDayEventsTemplate"
+                                     (dayClicked)="dayClicked($event.day)">
+            </mwl-calendar-month-view>
+
+            <ng-template #customCellTemplate let-day="day" let-locale="locale">
+                <div class="cal-cell-top">
+                    <span class="cal-day-badge" *ngIf="day.badgeTotal > 0">{{ day.badgeTotal }}</span>
+                    <span class="cal-day-number">{{ day.date | calendarDate:'monthViewDayNumber':locale }}</span>
+                </div>
+                <small style="margin: 5px" *ngIf="day.events.length > 0">There are {{ day.events.length }} available visits on this day</small>
+            </ng-template>
+
+            <ng-template #customOpenDayEventsTemplate let-events="events" let-isOpen="isOpen">
+                <div class="cal-open-day-events" *ngIf="isOpen">
+                    <div class="event-grid">
+                        <button *ngFor="let event of events" (click)="handleEventClick(event)">
+                            <strong>{{ event.title }}</strong>
+                            <p>{{ event.start | date:'shortTime' }}</p>
+                        </button>
+                    </div>
+                </div>
+            </ng-template>
+
+        </div>
+    </div>
+</body>
