@@ -29,7 +29,7 @@
                         <a class="nav-link text-dark" [routerLink]="['/fetch-visits']">Fetch visits</a>
                     </li>
                     <li *ngIf='isUserAuthenticated' class="nav-item" [routerLinkActive]="['link-active']">
-                        <a class="nav-link text-dark" [routerLink]="['/choose-visit-type']">Choose visit type</a>
+                        <a class="nav-link text-dark" [routerLink]="['/customer/choose-visit-type']">Choose visit type</a>
                     </li>
                     <li *ngIf='isUserAuthenticated' class="nav-item" (click)="logout()" [routerLinkActive]="['link-active']">
                         <a class="nav-link text-dark" [routerLink]="['/']">Logout</a>

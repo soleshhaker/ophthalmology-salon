@@ -12,9 +12,6 @@ import { JwtModule } from "@auth0/angular-jwt";
 import { AuthGuard } from '../core/guards/auth.guard';
 import { ForbiddenComponent } from './forbidden/forbidden.component';
 import { AdminGuard } from '../core/guards/admin.guard';
-import { ChooseVisitTypeComponent } from './choose-visit-type/choose-visit-type.component';
-import { CalendarModule, CalendarUtils, DateAdapter } from 'angular-calendar';
-import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 
 export function tokenGetter() {
   console.log("getting token");
@@ -27,23 +24,17 @@ export function tokenGetter() {
     HomeComponent,
     NavMenuComponent,
     FetchVisitsComponent,
-    ForbiddenComponent,
-    ChooseVisitTypeComponent
+    ForbiddenComponent
   ],
   imports: [
     BrowserModule, HttpClientModule,
     ReactiveFormsModule,
-    CalendarModule.forRoot({
-      provide: DateAdapter,
-      useFactory: adapterFactory,
-    }),
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'fetch-visits', component: FetchVisitsComponent, canActivate: [AuthGuard, AdminGuard] },
       { path: 'authentication', loadChildren: () => import('./authentication/authentication.module').then(m => m.AuthenticationModule) },
+      { path: 'customer', loadChildren: () => import('./customer/customer.module').then(m => m.CustomerModule) },
       { path: "forbidden", component: ForbiddenComponent },
-      { path: "choose-visit-type", component: ChooseVisitTypeComponent }
-
     ]),
     JwtModule.forRoot({
       config: {
@@ -57,8 +48,7 @@ export function tokenGetter() {
     provide: HTTP_INTERCEPTORS,
     useClass: ErrorHandlerService,
     multi: true
-  },
-    CalendarUtils
+  }
   ],
   bootstrap: [AppComponent]
 })
