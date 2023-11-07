@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { Observable } from 'rxjs';
-import { parseISO, format, startOfDay, addMinutes, addMonths, isBefore, isSameMonth, differenceInMonths, isAfter, isSameDay } from 'date-fns'; // Import a date parsing library like date-fns
+import { parseISO, format, addMonths, isBefore, isSameMonth, isAfter, isSameDay } from 'date-fns'; // Import a date parsing library like date-fns
 import { CalendarEvent, CalendarView } from 'angular-calendar';
 
 @Component({
