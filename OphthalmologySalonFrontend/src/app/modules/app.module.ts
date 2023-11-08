@@ -12,6 +12,8 @@ import { JwtModule } from "@auth0/angular-jwt";
 import { AuthGuard } from '../core/guards/auth.guard';
 import { ForbiddenComponent } from './forbidden/forbidden.component';
 import { AdminGuard } from '../core/guards/admin.guard';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatDialogModule } from '@angular/material/dialog';
 
 export function tokenGetter() {
   console.log("getting token");
@@ -29,6 +31,7 @@ export function tokenGetter() {
   imports: [
     BrowserModule, HttpClientModule,
     ReactiveFormsModule,
+    MatDialogModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'fetch-visits', component: FetchVisitsComponent, canActivate: [AuthGuard, AdminGuard] },
@@ -42,7 +45,8 @@ export function tokenGetter() {
         allowedDomains: ["localhost:7105"],
         disallowedRoutes: [],
       }
-    })
+    }),
+    BrowserAnimationsModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,
