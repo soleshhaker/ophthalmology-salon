@@ -3,6 +3,8 @@ import { Component, OnInit} from '@angular/core';
 import { Observable } from 'rxjs';
 import { parseISO, format, addMonths, isBefore, isSameMonth, isAfter, isSameDay } from 'date-fns'; // Import a date parsing library like date-fns
 import { CalendarEvent, CalendarView } from 'angular-calendar';
+import { DateClickedDialogComponent } from '../date-clicked-dialog/date-clicked-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-choose-visit-type',
@@ -21,7 +23,7 @@ export class ChooseVisitTypeComponent implements OnInit {
   currentMonthIndex: number = 0;
   visibleMonth: MonthlyAvailableTimes | null = null;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private dialog: MatDialog) { }
 
 
   ngOnInit() {
@@ -86,8 +88,19 @@ export class ChooseVisitTypeComponent implements OnInit {
   }
 
   handleEventClick(event: CalendarEvent) {
-    // Handle the click event
-    // ...
+    const dialogRef = this.dialog.open(DateClickedDialogComponent, {
+      data: { event: event },
+      height: '200px',
+      width: '300px',
+      panelClass: 'bg-color'
+    });
+
+    dialogRef.afterClosed().subscribe((result: boolean) => {
+      if (result === true) {
+        // Call your backend post endpoint to book the event
+        // Add your backend API call logic here
+      }
+    });
   }
 
   dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
