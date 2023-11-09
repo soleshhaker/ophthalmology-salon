@@ -96,13 +96,6 @@ export class ChooseVisitTypeComponent implements OnInit {
       width: '300px',
       panelClass: 'bg-color'
     });
-
-    dialogRef.afterClosed().subscribe((result: boolean) => {
-      if (result === true) {
-        // Call your backend post endpoint to book the event
-        // Add your backend API call logic here
-      }
-    });
   }
 
   dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {

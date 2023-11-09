@@ -1,0 +1,9 @@
+<div class="custom-dialog">
+    <h2 mat-dialog-title class="custom-dialog-title">Visit booked succesfully!</h2>
+    <div mat-dialog-content class="custom-dialog-content">
+        <p>Your visit has been booked for {{ data.event.start | date }} {{ data.event.start | date:'shortTime' }}</p>
+    </div>
+    <div mat-dialog-actions class="custom-dialog-actions">
+        <button mat-button class="custom-confirm-button" (click)="onConfirmClick()">Confirm</button>
+    </div>
+</div>

@@ -1,0 +1,47 @@
+.custom-dialog {
+  border-radius: 15px;
+  text-align: center;
+  font-family: 'Roboto', sans-serif;
+}
+
+::ng-deep .mat-mdc-dialog-container {
+  --mdc-dialog-container-color: #87CEEB;
+}
+
+.custom-dialog-header {
+  background-color: #32CD32; /* Green background for the header */
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  padding: 10px;
+}
+
+.custom-dialog-title {
+  margin-top: 5px;
+  text-align: center;
+  color: #ffffff; /* White text color for the title */
+}
+
+.custom-dialog-content {
+  padding: 20px;
+}
+
+.custom-dialog-actions {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.custom-confirm-button, .custom-cancel-button {
+  width: 100px; /* Adjust the button width as needed */
+  border-radius: 5px; /* Round the buttons */
+  margin: 5px; /* Separate the buttons with margin */
+}
+
+.custom-confirm-button {
+  background-color: #32CD32; /* Green background for confirm button */
+  color: #ffffff; /* White text color for the button */
+}
+
+.custom-cancel-button {
+  background-color: #FF5733; /* Red background for cancel button */
+  color: #ffffff; /* White text color for the button */
+}
