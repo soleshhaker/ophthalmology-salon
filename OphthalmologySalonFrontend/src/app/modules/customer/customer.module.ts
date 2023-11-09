@@ -4,11 +4,15 @@ import { ChooseVisitTypeComponent } from './choose-visit-type/choose-visit-type.
 import { RouterModule } from '@angular/router';
 import { CalendarModule, CalendarUtils, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+import { DateClickedDialogComponent } from './date-clicked-dialog/date-clicked-dialog.component';
+import { DateConfirmedDialogComponent } from './date-confirmed-dialog/date-confirmed-dialog.component';
 
 
 @NgModule({
   declarations: [
     ChooseVisitTypeComponent,
+    DateClickedDialogComponent,
+    DateConfirmedDialogComponent,
   ],
   imports: [
     CommonModule,

@@ -3,6 +3,8 @@ import { Component, OnInit} from '@angular/core';
 import { Observable } from 'rxjs';
 import { parseISO, format, addMonths, isBefore, isSameMonth, isAfter, isSameDay } from 'date-fns'; // Import a date parsing library like date-fns
 import { CalendarEvent, CalendarView } from 'angular-calendar';
+import { DateClickedDialogComponent } from '../date-clicked-dialog/date-clicked-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-choose-visit-type',
@@ -21,7 +23,8 @@ export class ChooseVisitTypeComponent implements OnInit {
   currentMonthIndex: number = 0;
   visibleMonth: MonthlyAvailableTimes | null = null;
 
-  constructor(private http: HttpClient) {}
+  selectedVisitType: string = "";
+  constructor(private http: HttpClient, private dialog: MatDialog) { }
 
 
   ngOnInit() {
@@ -50,6 +53,7 @@ export class ChooseVisitTypeComponent implements OnInit {
   fetchAvailableTimes(visitType: string): Observable<string[]> {
     // Replace the URL with your actual backend endpoint
     const backendUrl = `https://localhost:7105/Api/v1/Customer/Visit/AvailableTime?visitType=${visitType}`;
+    this.selectedVisitType = visitType;
     return this.http.get<string[]>(backendUrl);
   }
 
@@ -86,8 +90,12 @@ export class ChooseVisitTypeComponent implements OnInit {
   }
 
   handleEventClick(event: CalendarEvent) {
-    // Handle the click event
-    // ...
+    const dialogRef = this.dialog.open(DateClickedDialogComponent, {
+      data: { event: event, visitType: this.selectedVisitType },
+      height: '200px',
+      width: '300px',
+      panelClass: 'bg-color'
+    });
   }
 
   dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
