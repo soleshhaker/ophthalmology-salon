@@ -51,7 +51,6 @@ export class ChooseVisitTypeComponent implements OnInit {
   }
 
   fetchAvailableTimes(visitType: string): Observable<string[]> {
-    // Replace the URL with your actual backend endpoint
     const backendUrl = `https://localhost:7105/Api/v1/Customer/Visit/AvailableTime?visitType=${visitType}`;
     this.selectedVisitType = visitType;
     return this.http.get<string[]>(backendUrl);

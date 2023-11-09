@@ -1,0 +1,26 @@
+<div class="container">
+    <h1>List of Visits</h1>
+    <div *ngFor="let status of getStatuses()">
+        <h2>{{ status }}</h2>
+        <table class="table table-bordered custom-table">
+            <thead>
+                <tr>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th>Visit Type</th>
+                    <th>Cost</th>
+                    <th>Additional Info</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let visit of visits | filterByStatus: status | orderByDate">
+                    <td>{{ visit.start | date:'dd MMMM, yyyy HH:mm' }}</td>
+                    <td>{{ visit.end | date:'dd MMMM, yyyy HH:mm' }}</td>
+                    <td>{{ visit.visitType }}</td>
+                    <td>{{ visit.cost }}</td>
+                    <td>{{ visit.additionalInfo }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,20 @@
+.custom-table {
+  font-family: 'Roboto', sans-serif; /* Use Roboto font */
+  border: 2px solid #c4e4f7; /* Light blue border */
+  border-collapse: collapse;
+  width: 100%;
+  text-align: center; /* Centered text */
+}
+
+th {
+  background-color: #c4e4f7; /* Light blue background for header row */
+}
+
+th, td {
+  padding: 10px;
+  border: 1px solid #c4e4f7; /* Light blue border for cells */
+}
+
+tr:last-child {
+  border-bottom: none; /* Remove bottom border from the last row */
+}
