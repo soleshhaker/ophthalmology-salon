@@ -23,6 +23,7 @@ export class ChooseVisitTypeComponent implements OnInit {
   currentMonthIndex: number = 0;
   visibleMonth: MonthlyAvailableTimes | null = null;
 
+  selectedVisitType: string = "";
   constructor(private http: HttpClient, private dialog: MatDialog) { }
 
 
@@ -52,6 +53,7 @@ export class ChooseVisitTypeComponent implements OnInit {
   fetchAvailableTimes(visitType: string): Observable<string[]> {
     // Replace the URL with your actual backend endpoint
     const backendUrl = `https://localhost:7105/Api/v1/Customer/Visit/AvailableTime?visitType=${visitType}`;
+    this.selectedVisitType = visitType;
     return this.http.get<string[]>(backendUrl);
   }
 
@@ -89,7 +91,7 @@ export class ChooseVisitTypeComponent implements OnInit {
 
   handleEventClick(event: CalendarEvent) {
     const dialogRef = this.dialog.open(DateClickedDialogComponent, {
-      data: { event: event },
+      data: { event: event, visitType: this.selectedVisitType },
       height: '200px',
       width: '300px',
       panelClass: 'bg-color'

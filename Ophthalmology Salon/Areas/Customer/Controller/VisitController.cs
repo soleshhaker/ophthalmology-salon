@@ -57,7 +57,7 @@ namespace OphthalmologySalon.Areas.Customer.Controller
         /// <summary>Returns visit with given id if current user is assigned to them</summary>
         /// <returns>Returns visit with given id if current user is assigned to them</returns>
         [HttpGet("CustomerVisitById/{id?}", Name = "CustomerVisitById")]
-        public IActionResult VisitById(int id)
+        public IActionResult CustomerVisitById(int id)
         {
             string userId = null;
 
@@ -150,7 +150,7 @@ namespace OphthalmologySalon.Areas.Customer.Controller
 
                 var visitReadDto = _mapper.Map<VisitReadDTO>(visit);
 
-                return CreatedAtRoute(nameof(VisitById), new { visitReadDto.Id }, visitReadDto);
+                return CreatedAtRoute(nameof(CustomerVisitById), new { visitReadDto.Id }, visitReadDto);
             }
             catch (Exception ex)
             {
